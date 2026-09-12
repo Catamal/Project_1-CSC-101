@@ -49,23 +49,41 @@ def flip_binary(binary_str):
             flipped += '1' # 0 to 1
     return flipped # gives input
 
-# Finally converty back to normal text
-def text_to_binary(binary_str):
-    """ Converts the flipped binary from def 2 back to human language."""
-    flipped_result = "" # waiting for an input
+# Finally convert back to normal text
+def binary_to_text(binary_str):
+    """ Converts the binary back to human language."""
+    text_result = "" # waiting for an input
     for counter in range(0, len(binary_str), 8): # key line where the expression "counter" 
         # will go through len(binary_str) in segments of 8 bits (loops)
         byte = binary_str[counter:counter + 8] # takes the next 8 bits
         ascii_code = int(byte, 2) # converts the 8 bits back to ASCII code
-        flipped_result += chr(ascii_code) # converts the ASCII code back to a character
-    return flipped_result # gives input
+        text_result += chr(ascii_code) # converts the ASCII code back to a character
+    return text_result # gives input
 
 
 # ---------------------------------------------------------------------------
 # File I/O functions (Input/Output; save and load messages)
 # ---------------------------------------------------------------------------
 
+def init_db():
     open("messages.txt", "a").close() # creates the file if it doesn't exist
+
+def save_to_file(filename, binary_data): # both are placeholders
+    """Save encrypted binary data to a text file."""
+    with open(filename, "w") as file: # open file for writing
+        file.write(binary_data) # write the binary data to the file
+    print(f"Encrypted message saved to {filename}") # confirmation message
+
+def read_from_file(filename):
+    """Read encrypted binary data from a text file."""
+    try: # try to read the file
+        with open(filename, "r") as file: # open file for reading
+            binary_data = file.read() # read the entire file contents
+        return binary_data # return the binary data
+    except FileNotFoundError: # if file doesn't exist
+        print(f"Error: File '{filename}' not found.") # show error message
+        return None # return None if file not found
+
 
 
 
@@ -83,7 +101,7 @@ MENU = """
 """
 
 def main():
-    init_db()
+    init_db() #init = initialize; db = database
     print("Welcome to the Encryption App!")
     while True:
         print(MENU)
