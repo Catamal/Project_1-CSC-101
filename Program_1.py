@@ -4,15 +4,15 @@
 # Kingsley Wickstrom
 
 # Program_1.py
-# ├── Helper functions (conversion & bit operations)
-# ├ these will be used in the encryption and decryption functions
-# ├── File I/O functions
-# ├ these will be used to save and load messages from a file
-# ├── Encryption function
-# ├ this will take a message and shift the letters using ASCII binary code
-# ├── Decryption function
-# ├ this will take an encrypted message and shift the letters back to their original positions
-# └── Main menu loop
+# - Helper functions (conversion & bit operations)
+#  these will be used in the encryption and decryption functions
+#  File I/O functions
+#  these will be used to save and load messages from a file
+# - Encryption function
+#  this will take a message and shift the letters using ASCII binary code
+# - Decryption function
+#  this will take an encrypted message and shift the letters back to their original positions
+# -- Main menu loop
 
 # ---------------------------------------------------------------------------
 # Helper functions (conversion & bit operations)
@@ -86,8 +86,8 @@ def read_from_file(filename):
 
 def encrypt_message():
     """Encrypt msg and save to file."""
-    msg = input("Enter the message to encrypt: ")
-    binary_data = text_to_binary(msg) # cycled from Helpers functions
+    emsg = input("Enter the message to encrypt: ") # emsg = encrypted message
+    binary_data = text_to_binary(emsg) # cycled from Helpers functions
     flipped_data = flip_binary(binary_data) # cycling in Helper functions
     save_to_file("messages.txt", flipped_data) # save the flipped binary data to a file
     print("Message encrypted and saved to 'messages.txt'.")
@@ -96,7 +96,13 @@ def encrypt_message():
 
 def decrypt_message():
     """Decrypt msg from file and display it."""
-    
+    dmsg = read_from_file("messages.txt") # dmsg = decrypted message
+    if dmsg is not None:
+        flipped_data = flip_binary(dmsg) # cycling in Helper functions
+        original_message = binary_to_text(flipped_data) # cycling in Helper functions
+        print(f"Decrypted message: {original_message}") # show the decrypted message
+    else:
+        print("No message to decrypt.") # level 8 error if no message to decrypt
 
 # ---------------------------------------------------------------------------
 # Main menu (I am using the code from the budgeting app as a template for this program)
@@ -126,3 +132,8 @@ def main():
             break # continue
         else:
             print("Invalid choice, please pick a number from 1 to 3.") # level 8 error
+
+# Start the program
+if __name__ == "__main__":
+    main()
+
