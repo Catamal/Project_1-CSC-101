@@ -84,8 +84,19 @@ def read_from_file(filename):
         print(f"Error: File '{filename}' not found.") # show error message
         return None # return None if file not found
 
+def encrypt_message():
+    """Encrypt msg and save to file."""
+    msg = input("Enter the message to encrypt: ")
+    binary_data = text_to_binary(msg) # cycled from Helpers functions
+    flipped_data = flip_binary(binary_data) # cycling in Helper functions
+    save_to_file("messages.txt", flipped_data) # save the flipped binary data to a file
+    print("Message encrypted and saved to 'messages.txt'.")
 
 
+
+def decrypt_message():
+    """Decrypt msg from file and display it."""
+    
 
 # ---------------------------------------------------------------------------
 # Main menu (I am using the code from the budgeting app as a template for this program)
