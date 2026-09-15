@@ -22,7 +22,6 @@
 # chr() - converts an integer to a character (ex. chr(65) returns 'A')
 # bin() - converts an integer to a binary string (ex. bin(65) returns '0b1000001')
 # zfill() - pads a string with zeros on the left (ex. '1'.zfill(3) returns '001')
-# int() - converts a string to an integer (ex. int('1010', 2) returns 10)
 # ---------------------------------------------------------------------------
 
 # Start with a binary conversion function to turn text into binary 
@@ -93,7 +92,7 @@ def encrypt_message():
     print("Message encrypted and saved to 'messages.txt'.")
 
 
-
+# THIS CAN BE UPGRADED
 def decrypt_message():
     """Decrypt msg from file and display it."""
     dmsg = read_from_file("messages.txt") # dmsg = decrypted message
@@ -134,6 +133,6 @@ def main():
             print("Invalid choice, please pick a number from 1 to 3.") # level 8 error
 
 # Start the program
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()
 
