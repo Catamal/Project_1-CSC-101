@@ -1,4 +1,4 @@
-# This program allows the user to encript and decript a message using ASCII binary code 
+# This program allows the user to encrypt and decrypt a message using ASCII binary code 
 # to shift the letters in the message
 # 9/11/2026
 # Kingsley Wickstrom
@@ -23,11 +23,10 @@
 # bin() - converts an integer to a binary string (ex. bin(65) returns '0b1000001')
 # zfill() - pads a string with zeros on the left (ex. '1'.zfill(3) returns '001')
 # ---------------------------------------------------------------------------
-
 # Start with a binary conversion function to turn text into binary 
 # so ASCII can be shifted for encryption/decryption
 def text_to_binary(text):
-    """Convert text to binary representation of ASCII codes."""
+    # Convert text to binary representation of ASCII codes
     binary_result = "" # waiting for input
     for character in text: # goes through each character in the text
         ascii_code = ord(character) # gets the ASCII code for the character
@@ -35,7 +34,7 @@ def text_to_binary(text):
         # pads it with zeros to make it 8 bits long; ASCII is normally 7 bits, but to account
         # for extended ASCII characters I am using 8 bits
         binary_result += binary_code # adds the binary code to the result
-    return binary_result # gives input
+    return binary_result # returns bin str (gives input)
 
 # Next flip the binary code to shift the letters for encryption/decryption
 def flip_binary(binary_str):
@@ -46,7 +45,7 @@ def flip_binary(binary_str):
             flipped += '0' # 1 to 0
         else:
             flipped += '1' # 0 to 1
-    return flipped # gives input
+    return flipped
 
 # Finally convert back to normal text
 def binary_to_text(binary_str):
@@ -57,7 +56,7 @@ def binary_to_text(binary_str):
         byte = binary_str[counter:counter + 8] # takes the next 8 bits
         ascii_code = int(byte, 2) # converts the 8 bits back to ASCII code
         text_result += chr(ascii_code) # converts the ASCII code back to a character
-    return text_result # gives input
+    return text_result
 
 
 # ---------------------------------------------------------------------------
@@ -91,8 +90,6 @@ def encrypt_message():
     save_to_file("messages.txt", flipped_data) # save the flipped binary data to a file
     print("Message encrypted and saved to 'messages.txt'.")
 
-
-# THIS CAN BE UPGRADED
 def decrypt_message():
     """Decrypt msg from file and display it."""
     dmsg = read_from_file("messages.txt") # dmsg = decrypted message
